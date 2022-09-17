@@ -7,7 +7,7 @@ run container =docker run --rm --name catalog-service -p 8080:8080 catalog-servi
 - a k8's cluster is a set of worker machines (nodes) that runs containers
     - every cluster has at least one worker node
 - control plane manages worker nodes.it exposes the api and interfaces to define/deploy/manage the lifecycle of containers
-![alt text](./k8_main_component.png)
+![alt text](./pictures/k8_main_component.png)
 
 - Pod = the smalles deployable unit, usually contains only one application + sometimes support containers for admin tasks
 - Deployment = informs k8's about the desired state for each instance it creates a pod
@@ -31,4 +31,4 @@ kubectl delete service catalog-service
 kubectl delete deployment catalog-service
 
 # Architecture
-![alt text](./architecture_of_app.png)
+![alt text](./pictures/architecture_of_app.png)
