@@ -29,6 +29,10 @@ jobs:
           severity-cutoff: high
           acs-report-enable: true
 
+      - name: Display sarif in console
+        run: |
+          cat ./results.sarif
+
       - name: Upload vulnerability report
         uses: github/codeql-action/upload-sarif@v2
         if: success() || failure()

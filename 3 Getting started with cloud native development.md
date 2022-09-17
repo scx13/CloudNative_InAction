@@ -44,3 +44,37 @@ server:
 - Production stage. After a release candidate has gone through the commit and acceptance stages, we are confident enough to deploy it to production. This stage is triggered manually or automatically, depending on whether it’s been decided to adopt a continuous deployment practice. The new release candidate is deployed to a production environment using the same deployment scripts employed (and tested) in the acceptance stage. Optionally, some final automated tests can be run to verify the deployment was successful.
 
 - Each workflow is organized into jobs that run in parallel. 
+
+# Summary 
+- Each cloud native application should be tracked in its own codebase, and all the dependencies should be declared in a manifest using tools like Gradle or Maven.
+
+- Cloud native applications don’t depend on servers being injected into the environment. Instead, they use an embedded server and are self-contained.
+
+- Tomcat is the default embedded server for Spring Boot applications and can be configured through properties to customize the ports it’s listening on, connections, timeouts, and threads.
+
+- The request/response interaction provided by a Servlet container like Tomcat is both synchronous and blocking. Each thread handles an HTTP request until a response is returned.
+
+- The "API first" principle recommends designing the API before implementing the business logic to establish a contract. In this way, other teams can develop their services to consume your application based on the contract itself without waiting for the application to be finished.
+
+- In Spring MVC, REST APIs are implemented in @RestController classes.
+Each REST controller method handles an incoming request with a specific method (GET, POST, PUT, DELETE) and endpoint (e.g., /books).
+
+- Controller methods can declare endpoints and operations they handle through the annotations @GetMapping, @PostMapping, @PutMapping, @DeleteMapping, and @RequestMapping.
+
+- Methods of a @RestController class can validate the HTTP request body before the processing happens by applying the @Valid annotation.
+
+- The validation constraints for a given Java object are defined using the annotations from the Java Bean Validation API on the fields. For example, @NotBlank, @Pattern, @Positive.
+
+- Java Exceptions thrown during the processing of an HTTP request can be mapped to an HTTP status code and body in a centralized @RestControllerAdvice class, decoupling the exception handling for the REST API from the code throwing the exception.
+
+- Unit tests are not aware of the Spring configuration but can be written as standard Java tests using familiar tools like JUnit, Mockito, and AssertJ.
+
+- Integration tests need a Spring application context to run. A full application context, including an optional embedded server, can be initialized for testing using the @SpringBootTest annotation.
+
+- When tests are focused only on a "slice" of the application and only need a part of the configuration, Spring Boot provides several annotations for more targeted integration tests. When using those annotations, a Spring application context is initialized, but only the components and configuration parts used by the specific functionality slice are loaded.
+
+- @WebMvcTest is for testing Spring MVC components.
+
+- @JsonTest is for testing JSON serialization and deserialization.
+
+- GitHub Actions is a tool provided by GitHub to declare pipelines (or workflows) to automate tasks. It can be used to build a deployment pipeline.
